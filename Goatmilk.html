@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Goat's Milk Shop</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color:ADD8E6;                                           
+    }
+    .container {
+      width: 80%;
+      margin: 40px auto;
+      padding: 20px;
+      border: 1px solid      
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color:      
+    }
+    .product {
+      margin: 20px;
+      padding: 20px;
+      border: 1px solid      
+      border-radius: 10px;
+      background-color:         
+    }
+    .product h2 {
+      color:         
+    }
+    .product p {
+      color:      
+    }
+    .button {
+      background-color:         
+      color:      
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .button:hover {
+      background-color:         
+    }
+    .summary {
+      margin-top: 40px;
+      padding: 20px;
+      border: 1px solid      
+      border-radius: 10px;
+      background-color:         
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 style="color:                                     
+    <div class="product">
+      <h2>Pouch = ₱10.00</h2>
+      <p>Available stock: 100 pieces</p>
+      <input type="number" id="pouch-quantity" placeholder="Quantity">
+      <button class="button" onclick="buyPouch()">Buy Pouch</button>
+    </div>
+    <div class="product">
+      <h2>Bottle = ₱35.00</h2>
+      <p>Available stock: 100 pieces</p>
+      <input type="number" id="bottle-quantity" placeholder="Quantity">
+      <button class="button" onclick="buyBottle()">Buy Bottle</button>
+    </div>
+    <div class="product">
+      <h2>1 Liter = ₱100.00</h2>
+      <p>Available stock: 100 pieces</p>
+      <input type="number" id="liter-quantity" placeholder="Quantity">
+      <button class="button" onclick="buyLiter()">Buy 1 Liter</button>
+    </div>
+    <div class="summary" id="summary">
+      <h2>Summary</h2>
+      <p id="total"></p>
+      <p id="remaining-stock"></p>
+      <button class="button" onclick="checkout()">Checkout</button>
+    </div>
+  </div>
+  <script>
+    let stock = 300;
+    let total = 0;
+    function buyPouch() {
+      let quantity = parseInt(document.getElementById('pouch-quantity').value);
+      if (quantity > stock) {
+        alert('Out of stock!');
+        return;
+      }
+      total += quantity * 10;
+      stock -= quantity;
+      document.getElementById('total').innerHTML = 'Total: ₱' + total;
+      document.getElementById('remaining-stock').innerHTML = 'Remaining stock: ' + stock + ' pieces';
+    }
+    function buyBottle() {
+      let quantity = parseInt(document.getElementById('bottle-quantity').value);
+      if (quantity > stock) {
+        alert('Out of stock!');
+        return;
+      }
+      total += quantity * 35;
+      stock -= quantity;
+      document.getElementById('total').innerHTML = 'Total: ₱' + total;
+      document.getElementById('remaining-stock').innerHTML = 'Remaining stock: ' + stock + ' pieces';
+    }
+    function buyLiter() {
+      let quantity = parseInt(document.getElementById('liter-quantity').value);
+      if (quantity > stock) {
+        alert('Out of stock!');
+        return;
+      }
+      total += quantity * 100;
+      stock -= quantity;
+      document.getElementById('total').innerHTML = 'Total: ₱' + total;
+      document.getElementById('remaining-stock').innerHTML = 'Remaining stock: ' + stock + ' pieces';
+    }
+    function checkout() {
+      alert('Thank you for your purchase! Your total is ₱' + total);
+      // Add your payment processing logic here
+    }
+  </script>
+</body>
+</html>
