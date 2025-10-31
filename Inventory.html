@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Goat's Milk Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            text-align: center;
+        }
+        .product {
+            margin: 20px;
+        }
+        .price {
+            color:      
+        }
+        .stock {
+            color:      
+        }
+        .summary {
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>FOR SALE (GOATS MILK)</h2>
+        <hr>
+        <div class="product">
+            <p>(1) Pouch = 10 Php</p>
+            <p>(2) Bottle = 35 Php</p>
+            <p>(3) 1 liter = 100 Php</p>
+        </div>
+        <hr>
+        <form id="orderForm">
+            <label for="product">What do you want?</label>
+            <select id="product" name="product">
+                <option value="1">Pouch</option>
+                <option value="2">Bottle</option>
+                <option value="3">1 liter</option>
+            </select>
+            <br><br>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity">
+            <br><br>
+            <input type="submit" value="Order">
+        </form>
+        <div class="summary" id="summary"></div>
+    </div>
+
+    <script>
+        let stock = 100;
+        let prices = [10, 35, 100];
+
+        document.getElementById('orderForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let product = document.getElementById('product').value;
+            let quantity = parseInt(document.getElementById('quantity').value);
+
+            if (quantity > stock) {
+                document.getElementById('summary').innerHTML = 'Out of stock!';
+                return;
+            }
+
+            let total = quantity * prices[product - 1];
+            stock -= quantity;
+
+            let summaryHTML = `
+                <h3>SUMMARY DETAILS</h3>
+                <p>Total: ${total} Php</p>
+                <p>Number of Remaining Stock: ${stock}</p>
+            `;
+            document.getElementById('summary').innerHTML = summaryHTML;
+        });
+    </script>
+</body>
+</html>
